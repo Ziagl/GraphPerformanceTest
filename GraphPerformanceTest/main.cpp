@@ -79,5 +79,8 @@ int main()
     std::cout << "List new " << teamNew.Name() << " (" << leagueNew.Name() << ", " << countryNew.Name() << ")" << std::endl;
     std::for_each(teamNew.player.begin(), teamNew.player.end(), [](auto player) { std::cout << "    " << player.Firstname() << " " << player.Lastname() << std::endl; });
 
+    // create graph structure data
+    
+
     return 0;
 }
