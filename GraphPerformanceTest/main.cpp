@@ -61,11 +61,11 @@ int main()
     auto player = team.player[randomPlayer];
     std::cout << "Move Player " << player.Firstname() << " " << player.Lastname() << " from " << team.Name() << " (" << league.Name() << ", " << country.Name() << ") to ";
     int randomCountryNew = RandomNumberGenerator::randomNumber(0, data.size());
-    auto countryNew = data[randomCountry];
+    auto countryNew = data[randomCountryNew];
     int randomLeagueNew = RandomNumberGenerator::randomNumber(0, country.leagues.size());
-    auto leagueNew = country.leagues[randomLeague];
+    auto leagueNew = country.leagues[randomLeagueNew];
     int randomTeamNew = RandomNumberGenerator::randomNumber(0, league.teams.size());
-    auto teamNew = league.teams[randomTeam];
+    auto teamNew = league.teams[randomTeamNew];
     std::cout << teamNew.Name() << " (" << leagueNew.Name() << ", " << countryNew.Name() << ")" << std::endl;
 
     teamNew.player.insert(  teamNew.player.end(), 
