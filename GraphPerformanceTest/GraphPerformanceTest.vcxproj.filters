@@ -13,10 +13,48 @@
       <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
       <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
     </Filter>
+    <Filter Include="Headerdateien\Tools">
+      <UniqueIdentifier>{29421f28-51e1-43f8-a023-c7a6f3b3cdb0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Tools">
+      <UniqueIdentifier>{9c83ba14-8245-453d-95b0-5e1271a064e4}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="NameGenerator.cpp">
+      <Filter>Quelldateien\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="RandomNumberGenerator.cpp">
+      <Filter>Quelldateien\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="ClassHierarchyFactory.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Player.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Team.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="League.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="Country.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="NameGenerator.h">
+      <Filter>Headerdateien\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="RandomNumberGenerator.h">
+      <Filter>Headerdateien\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="ClassHierarchyFactory.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>
