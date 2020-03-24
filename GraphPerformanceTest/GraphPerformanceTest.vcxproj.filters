@@ -33,6 +33,9 @@
     <ClCompile Include="ClassHierarchyFactory.cpp">
       <Filter>Quelldateien</Filter>
     </ClCompile>
+    <ClCompile Include="GraphFactory.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Player.h">
@@ -54,6 +57,9 @@
       <Filter>Headerdateien\Tools</Filter>
     </ClInclude>
     <ClInclude Include="ClassHierarchyFactory.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="GraphFactory.h">
       <Filter>Headerdateien</Filter>
     </ClInclude>
   </ItemGroup>

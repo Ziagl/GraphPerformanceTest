@@ -17,6 +17,7 @@
 #include "ClassHierarchyFactory.h"
 #include "NameGenerator.h"
 #include "RandomNumberGenerator.h"
+#include "GraphFactory.h"
 
 int main()
 {
@@ -47,24 +48,24 @@ int main()
     });
 
     // list players of a random team
-    int randomCountry = RandomNumberGenerator::randomNumber(0, data.size());
+    int randomCountry = RandomNumberGenerator::randomNumber(0, static_cast<int>(data.size()));
     auto country = data[randomCountry];
-    int randomLeague = RandomNumberGenerator::randomNumber(0, country.leagues.size());
+    int randomLeague = RandomNumberGenerator::randomNumber(0, static_cast<int>(country.leagues.size()));
     auto league = country.leagues[randomLeague];
-    int randomTeam = RandomNumberGenerator::randomNumber(0, league.teams.size());
+    int randomTeam = RandomNumberGenerator::randomNumber(0, static_cast<int>(league.teams.size()));
     auto team = league.teams[randomTeam];
     std::cout << "List " << team.Name() << " (" << league.Name() << ", " << country.Name() << ")" << std::endl;
     std::for_each(team.player.begin(), team.player.end(), [](auto player) { std::cout << "    " << player.Firstname() << " " << player.Lastname() << std::endl; });
 
     // move random player to random team
-    int randomPlayer = RandomNumberGenerator::randomNumber(0, team.player.size());
+    int randomPlayer = RandomNumberGenerator::randomNumber(0, static_cast<int>(team.player.size()));
     auto player = team.player[randomPlayer];
     std::cout << "Move Player " << player.Firstname() << " " << player.Lastname() << " from " << team.Name() << " (" << league.Name() << ", " << country.Name() << ") to ";
-    int randomCountryNew = RandomNumberGenerator::randomNumber(0, data.size());
+    int randomCountryNew = RandomNumberGenerator::randomNumber(0, static_cast<int>(data.size()));
     auto countryNew = data[randomCountryNew];
-    int randomLeagueNew = RandomNumberGenerator::randomNumber(0, country.leagues.size());
+    int randomLeagueNew = RandomNumberGenerator::randomNumber(0, static_cast<int>(country.leagues.size()));
     auto leagueNew = country.leagues[randomLeagueNew];
-    int randomTeamNew = RandomNumberGenerator::randomNumber(0, league.teams.size());
+    int randomTeamNew = RandomNumberGenerator::randomNumber(0, static_cast<int>(league.teams.size()));
     auto teamNew = league.teams[randomTeamNew];
     std::cout << teamNew.Name() << " (" << leagueNew.Name() << ", " << countryNew.Name() << ")" << std::endl;
 
@@ -80,7 +81,11 @@ int main()
     std::for_each(teamNew.player.begin(), teamNew.player.end(), [](auto player) { std::cout << "    " << player.Firstname() << " " << player.Lastname() << std::endl; });
 
     // create graph structure data
-    
+    auto graph = GraphFactory::create();
+    auto vertices = graph.m_vertices;
+    std::cout << "Graph mit " << vertices.size() << " Knoten erstellt." << std::endl;
+
+    GraphFactory::showVertices(graph);
 
     return 0;
 }
