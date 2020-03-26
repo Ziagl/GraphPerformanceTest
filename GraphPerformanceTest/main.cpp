@@ -10,14 +10,69 @@
  *   * search for a player name
  *   * list all players of a team
  *   * move a player from one team to another
+ *
+ * RAM usage source:
+ *   https://stackoverflow.com/questions/63166/how-to-determine-cpu-and-memory-consumption-from-inside-a-process
  */
 
 #include <iostream>
 #include <algorithm>
+#include <chrono>
 #include "ClassHierarchyFactory.h"
 #include "NameGenerator.h"
 #include "RandomNumberGenerator.h"
 #include "GraphFactory.h"
+
+#ifdef _WIN32
+    // add windows header for performace and ram usage measurement
+    #include "windows.h"
+    #include "psapi.h"
+#elif __linux__
+    #include "stdlib.h"
+    #include "stdio.h"
+    #include "string.h"
+
+    int parseLine(char* line) {
+        // This assumes that a digit will be found and the line ends in " Kb".
+        int i = strlen(line);
+        const char* p = line;
+        while (*p < '0' || *p > '9') p++;
+        line[i - 3] = '\0';
+        i = atoi(p);
+        return i;
+    }
+
+    int getValue() { //Note: this value is in KB!
+        FILE* file = fopen("/proc/self/status", "r");
+        int result = -1;
+        char line[128];
+
+        while (fgets(line, 128, file) != NULL) {
+            if (strncmp(line, "VmSize:", 7) == 0) {
+                result = parseLine(line);
+                break;
+            }
+        }
+        fclose(file);
+        return result;
+    }
+#endif
+
+void printRAMUsage()
+{
+#ifdef _WIN32
+    PROCESS_MEMORY_COUNTERS_EX pmc;
+    GetProcessMemoryInfo(GetCurrentProcess(), (PROCESS_MEMORY_COUNTERS*)&pmc, sizeof(pmc));
+    SIZE_T virtualMemUsedByMe = pmc.PrivateUsage;
+    float megabyte = virtualMemUsedByMe / 1000000.0f;
+
+    std::cout << "Process RAM usage: " << megabyte << " Megabyte" << std::endl;
+#elif __linux__
+    float megabyte = getValue() / 1000.0f;
+
+    std::cout << "Process RAM usage: " << megabyte << " Megabyte" << std::endl;
+#endif
+}
 
 int main()
 {
@@ -27,6 +82,9 @@ int main()
 
     // create class structure data
     {
+        // start timer
+        auto begin = std::chrono::steady_clock::now();
+        
         std::cout << "create class data structure" << std::endl;
         std::cout << "***************************" << std::endl << std::endl;
         auto data = ClassHierarchyFactory::create();
@@ -82,10 +140,19 @@ int main()
         std::for_each(team.player.begin(), team.player.end(), [](auto player) { std::cout << "    " << player.Firstname() << " " << player.Lastname() << std::endl; });
         std::cout << "List new " << teamNew.Name() << " (" << leagueNew.Name() << ", " << countryNew.Name() << ")" << std::endl;
         std::for_each(teamNew.player.begin(), teamNew.player.end(), [](auto player) { std::cout << "    " << player.Firstname() << " " << player.Lastname() << std::endl; });
+
+        // stop timer
+        auto end = std::chrono::steady_clock::now();
+        std::cout << std::endl << "Benchmark result:" << std::endl;
+        std::cout << "Runtime: " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / 1000000.0f << " [s]" << std::endl;
+        printRAMUsage();
     }
 
     // create graph structure data
     {
+        // start timer
+        auto begin = std::chrono::steady_clock::now();
+
         std::cout << std::endl << std::endl;
         std::cout << "create graph data structure" << std::endl;
         std::cout << "***************************" << std::endl << std::endl;
@@ -103,6 +170,12 @@ int main()
 
         // move random player to random team
         GraphFactory::moveRandomPlayerToRandomTeam(graph);
+
+        // stop timer
+        auto end = std::chrono::steady_clock::now();
+        std::cout << std::endl << "Benchmark result:" << std::endl;
+        std::cout << "Runtime: " << std::chrono::duration_cast<std::chrono::microseconds>(end - begin).count() / 1000000.0f << " [s]" << std::endl;
+        printRAMUsage();
     }
 
     return 0;

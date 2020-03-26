@@ -1,0 +1,60 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Headerdateien">
+      <UniqueIdentifier>{33400844-0884-4667-b057-795cbee5b413}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Headerdateien\Tools">
+      <UniqueIdentifier>{458afe72-4a2d-487b-9edc-69ebf50441ac}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien">
+      <UniqueIdentifier>{e3dbadcc-3c70-45c3-a482-a8fddaf6fd9a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Quelldateien\Tools">
+      <UniqueIdentifier>{0ecaf426-590a-4846-9c1a-ee619756df5f}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\GraphPerformanceTest\NameGenerator.h">
+      <Filter>Headerdateien\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GraphPerformanceTest\RandomNumberGenerator.h">
+      <Filter>Headerdateien\Tools</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GraphPerformanceTest\ClassHierarchyFactory.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GraphPerformanceTest\Country.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GraphPerformanceTest\GraphFactory.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GraphPerformanceTest\League.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GraphPerformanceTest\Player.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+    <ClInclude Include="..\GraphPerformanceTest\Team.h">
+      <Filter>Headerdateien</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="..\GraphPerformanceTest\NameGenerator.cpp">
+      <Filter>Quelldateien\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GraphPerformanceTest\RandomNumberGenerator.cpp">
+      <Filter>Quelldateien\Tools</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GraphPerformanceTest\ClassHierarchyFactory.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GraphPerformanceTest\GraphFactory.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+    <ClCompile Include="..\GraphPerformanceTest\main.cpp">
+      <Filter>Quelldateien</Filter>
+    </ClCompile>
+  </ItemGroup>
+</Project>
