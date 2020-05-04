@@ -25,3 +25,7 @@ Code fully works on Windows and Linux.
 
 To built the code, you need boost library (path was added to Windows environment variable BOOST).
 
+## More Details
+
+can be found on my blog: https://developer-blog.net/c-graph-performance-test/
+
