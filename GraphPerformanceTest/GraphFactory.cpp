@@ -275,7 +275,7 @@ std::vector<vertex_t> GraphFactory::getChildIds(Graph& g, vertex_t vertex)
 	out_edge_iterator eo, eo_end;
 	for (boost::tie(eo, eo_end) = boost::out_edges(vertex, g); eo != eo_end; ++eo)
 	{
-		result.push_back(boost::source(*eo, g));
+		result.push_back(boost::target(*eo, g));
 	}
 	
 	return result;
